@@ -1,0 +1,140 @@
+:root {
+    --header-height: 78px;
+    --ink: #102a2a;
+    --muted: #55706d;
+    --primary: #087f73;
+    --primary-dark: #075e56;
+    --surface: rgba(255, 255, 255, 0.96);
+    --shadow: 0 8px 24px rgba(13, 45, 42, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    width: 100%; height: 100%; margin: 0; min-width: 320px; overflow: hidden;
+    font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--ink);
+    background: #eaf2ef;
+}
+
+body { display: grid; grid-template-rows: var(--header-height) 1fr; }
+
+.app-header {
+    position: relative; z-index: 1200; display: flex; align-items: center;
+    gap: 1rem; min-height: var(--header-height); padding: 0.65rem 1.1rem;
+    color: #fff; background: linear-gradient(110deg, #073b37, #087f73 62%, #0b695f);
+    box-shadow: 0 5px 20px rgba(2, 34, 31, 0.25);
+}
+
+.app-title-group { display: flex; align-items: center; gap: 0.7rem; min-width: max-content; }
+.app-icon {
+    display: grid; place-items: center; width: 43px; height: 43px; border-radius: 14px;
+    background: rgba(255,255,255,.15); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    color: white; font-size: 1.4rem;
+}
+.app-title-group h1 { margin: 0; font-size: clamp(1rem, 2vw, 1.35rem); line-height: 1.2; }
+.app-title-group p { margin: .2rem 0 0; color: #c7e5df; font-size: .76rem; }
+
+.map-search { display: flex; flex: 1; max-width: 390px; margin-left: auto; }
+.map-search input {
+    width: 100%; min-width: 100px; height: 40px; padding: 0 .85rem;
+    border: 1px solid rgba(255,255,255,.28); border-right: 0; border-radius: 11px 0 0 11px;
+    outline: none; color: var(--ink); background: white; font: inherit; font-size: .85rem;
+}
+.map-search input:focus { box-shadow: inset 0 0 0 2px #76d7c8; }
+.map-search button, .header-button {
+    height: 40px; padding: 0 .9rem; border: 1px solid rgba(255,255,255,.24);
+    border-radius: 0 11px 11px 0; color: #fff; background: rgba(255,255,255,.14);
+    font: inherit; font-size: .82rem; font-weight: 650; cursor: pointer;
+    transition: background .18s ease, transform .18s ease;
+}
+.map-search button { background: #f2b84b; border-color: #f2b84b; color: #24332b; }
+.header-actions { display: flex; gap: .45rem; }
+.header-button { border-radius: 11px; white-space: nowrap; }
+.header-button:hover, .map-search button:hover { background: rgba(255,255,255,.27); transform: translateY(-1px); }
+.map-search button:hover { background: #ffd06d; }
+.fullscreen-button { width: 40px; padding: 0; font-size: 1.2rem; }
+
+#map { width: 100%; height: 100%; min-height: 0; background: #dce9e5; }
+#map .leaflet-container { width: 100%; height: 100%; font: inherit; background: #dce9e5; }
+
+.leaflet-control-zoom, .leaflet-control-layers, .leaflet-bar,
+.leaflet-control-attribution, .leaflet-control-scale {
+    border: 0 !important; border-radius: 12px !important; box-shadow: var(--shadow) !important;
+}
+.leaflet-control-zoom a, .leaflet-control-layers-toggle { color: var(--ink) !important; font-weight: 700; }
+.leaflet-control-zoom a { transition: background .15s ease; }
+.leaflet-control-zoom a:hover { color: var(--primary) !important; background: #e4f5f1 !important; }
+.leaflet-control-layers { max-width: min(90vw, 340px); background: var(--surface) !important; }
+.leaflet-control-layers-expanded { padding: 10px 12px; }
+.leaflet-control-layers .leaflet-control-layers-list { margin-top: .35rem; color: var(--ink); line-height: 1.8; }
+.leaflet-control-layers label { cursor: pointer; }
+.leaflet-control-layers-separator { border-top-color: #dce7e4; }
+.leaflet-control-attribution { background: rgba(255,255,255,.88) !important; }
+
+.leaflet-draw-toolbar { overflow: hidden; border-radius: 12px; box-shadow: var(--shadow); }
+.leaflet-draw-toolbar a { background-color: #fff !important; transition: background .15s ease; }
+.leaflet-draw-toolbar a:hover { background-color: #e4f5f1 !important; }
+.leaflet-draw-actions { overflow: hidden; border-radius: 9px; box-shadow: var(--shadow); }
+.leaflet-draw-actions a { color: #fff !important; background: var(--primary-dark) !important; }
+.leaflet-draw-actions a:hover { background: var(--primary) !important; }
+.leaflet-marker-icon.leaflet-div-icon { border: 2px solid #fff; border-radius: 50%; background: var(--primary); box-shadow: 0 4px 12px rgba(15,118,110,.35); }
+.leaflet-interactive { stroke-linecap: round; stroke-linejoin: round; }
+
+.coordenadas-control, .status-control, .map-status-control {
+    padding: .55rem .75rem; color: var(--ink); background: var(--surface);
+    border: 1px solid rgba(15, 60, 55, .08); border-radius: 11px;
+    font-size: 11px; box-shadow: var(--shadow); line-height: 1.45;
+}
+.coordenadas-control { font-family: Consolas, "Courier New", monospace; }
+.map-status-control { position: absolute; z-index: 1000; left: 10px; bottom: 58px; max-width: min(300px, 78vw); border-left: 4px solid var(--primary); font-size: 12px; }
+.status-control { min-width: 145px; }
+
+.measurement-panel {
+    width: min(290px, calc(100vw - 82px)); max-height: min(42vh, 360px); overflow: auto;
+    margin-top: 8px; padding: 12px; color: var(--ink); background: var(--surface);
+    border: 1px solid rgba(15, 60, 55, .1); border-radius: 14px; box-shadow: var(--shadow);
+}
+.measurement-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.measurement-heading strong { display: block; font-size: 14px; }
+.measurement-heading small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+.clear-measurements, .measurement-delete {
+    border: 0; border-radius: 8px; color: #a32727; background: #fff0ef;
+    font: inherit; font-size: 11px; font-weight: 650; cursor: pointer;
+}
+.clear-measurements { padding: 7px 9px; }
+.clear-measurements:disabled { opacity: .45; cursor: default; }
+.measurement-empty { margin: 11px 0 2px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.measurement-list { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.measurement-list li { display: flex; align-items: stretch; gap: 5px; }
+.measurement-focus {
+    display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 8px 9px; border: 0; border-radius: 9px; color: var(--ink);
+    background: #edf6f3; text-align: left; cursor: pointer;
+}
+.measurement-focus span { font-size: 12px; }
+.measurement-focus strong { color: var(--primary-dark); font-size: 12px; white-space: nowrap; }
+.measurement-focus:hover { background: #dcefe9; }
+.measurement-delete { width: 34px; font-size: 20px; line-height: 1; }
+.measurement-delete:hover, .clear-measurements:hover:not(:disabled) { background: #ffddda; }
+
+@media (max-width: 760px) {
+    :root { --header-height: 116px; }
+    .app-header { display: grid; grid-template-columns: 1fr auto; gap: .45rem .65rem; padding: .5rem .7rem; }
+    .app-title-group { grid-column: 1; grid-row: 1; }
+    .app-icon { width: 36px; height: 36px; }
+    .app-title-group p { font-size: .68rem; }
+    .header-actions { grid-column: 2; grid-row: 1; gap: .3rem; }
+    .header-button { height: 35px; padding: 0 .55rem; font-size: .72rem; }
+    .fullscreen-button { width: 35px; }
+    .map-search { grid-column: 1 / -1; grid-row: 2; width: 100%; max-width: none; }
+    .map-search input, .map-search button { height: 36px; }
+    .leaflet-control-layers { max-width: min(72vw, 300px); }
+    .measurement-panel { max-height: 32vh; padding: 10px; }
+    .leaflet-control-attribution { max-width: calc(100vw - 1rem); font-size: 9px; }
+}
+
+@media (max-width: 400px) {
+    .app-title-group h1 { font-size: .95rem; }
+    .app-title-group p { display: none; }
+    .header-button { padding: 0 .42rem; }
+}

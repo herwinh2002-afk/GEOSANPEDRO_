@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Geovisor</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    >
+
+    <!-- Leaflet Draw -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"
+        crossorigin=""
+    >
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div class="app-title-group">
+            <span class="app-icon" aria-hidden="true">⌖</span>
+            <div>
+                <h1>Geovisor San Pedro</h1>
+                <p>Visualización de información geográfica</p>
+            </div>
+        </div>
+        <form class="map-search" id="coordinate-search" role="search">
+            <input id="coordinate-input" type="search" placeholder="Latitud, longitud" aria-label="Buscar por coordenadas" autocomplete="off">
+            <button type="submit">Ir</button>
+        </form>
+        <div class="header-actions">
+            <button class="header-button" id="home-button" type="button" title="Volver a San Pedro">San Pedro</button>
+            <button class="header-button" id="locate-button" type="button" title="Usar mi ubicación">Mi ubicación</button>
+            <button class="header-button fullscreen-button" id="fullscreen-button" type="button" title="Pantalla completa" aria-label="Pantalla completa">⛶</button>
+        </div>
+    </header>
+
+    <!-- Contenedor principal del mapa -->
+    <main id="map" aria-label="Mapa del geovisor"></main>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <!-- Leaflet Draw -->
+    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js" crossorigin=""></script>
+
+    <!-- Librería para cargar Shapefiles ZIP -->
+    <script src="https://unpkg.com/shpjs@6.2.0/dist/shp.js"></script>
+
+    <!-- Leaflet Shapefile -->
+    <script src="https://calvinmetcalf.github.io/leaflet.shapefile/leaflet.shpfile.js"></script>
+
+    <!-- GeoRaster -->
+    <script src="https://unpkg.com/georaster@1.6.0/dist/georaster.browser.bundle.min.js"></script>
+
+    <!-- GeoRaster para Leaflet -->
+    <script src="https://unpkg.com/georaster-layer-for-leaflet@3.10.0/dist/georaster-layer-for-leaflet.min.js"></script>
+
+    <!-- JavaScript del geovisor -->
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
